@@ -1,11 +1,18 @@
 import React from 'react'
 import './TodoItem.css'
 
-const TodoItem=({todo})=>(
+const TodoItem=({todo,onRemovePressed,onCompletePressed})=>(
     <div className="todo-item-container">
-        <h3>{todo.task}</h3>
-        <button className="complete-button">Mask As Complete</button>
-        <button className="remove-button">Remove</button>
+        <h3>{todo.taskName}</h3>
+        {!todo.isComplete &&
+        <button 
+            onClick={()=>onCompletePressed(todo.taskName)}
+            className="completed-button">Mask As Complete</button>
+         }
+
+        <button
+        onClick={()=> onRemovePressed(todo.taskName)} 
+        className="remove-button">Remove</button>
     </div>
 )
 

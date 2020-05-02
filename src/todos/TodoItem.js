@@ -4,7 +4,7 @@ import './TodoItem.css'
 const TodoItem=({todo,onRemovePressed,onCompletePressed})=>(
     <div className="todo-item-container">
         <h3>{todo.taskName}</h3>
-        {todo.isComplete ?
+        {todo.completed ?
         null :
         <button 
             onClick={()=>onCompletePressed(todo)}

@@ -31,10 +31,10 @@ export const todos=(state=[],action)=> {
         }
 
         case C.MARK_TASK_AS_COMPLETE: {
-            const {todo}=payload;
-           return state.map(todoTask=>{
-                if(todoTask.id===todo.id){
-                    return {todo}
+            const {todo: todoUpdate}=payload;
+           return state.map(todo=>{
+                if(todo.id==todoUpdate.id){
+                    return todoUpdate;
                 }
                 return todo;
             })

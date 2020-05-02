@@ -1,7 +1,7 @@
 import React from 'react'
 import './NewTodoForm.css'
 import {connect} from 'react-redux'
-import {createTask} from './actions'
+import {createTodo} from './thunk'
 
 class NewTodoForm extends React.Component {
     constructor(props) {
@@ -47,7 +47,7 @@ const mapStateToProps=state=>({
 })
 
 const mapDispatchToProps=dispatch=>({
-    onCreatePressed: taskName => dispatch(createTask(taskName))
+    onCreatePressed: taskName => dispatch(createTodo(taskName))
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(NewTodoForm);

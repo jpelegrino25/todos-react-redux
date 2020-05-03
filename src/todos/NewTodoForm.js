@@ -1,7 +1,36 @@
 import React from 'react'
-import './NewTodoForm.css'
 import {connect} from 'react-redux'
 import {createTodo} from './thunk'
+import styled from 'styled-components'
+
+const FormContainer= styled.div `
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    box-shadow: 0 4px 8px grey;
+`
+
+const NewTodoInput = styled.input `
+    font-size: 16px;
+    padding: 8px;
+    border: none;
+    border-bottom: 2px solid #ddd;
+    border-radius: 8px;
+    width: 70%;
+    outline: none;
+`
+
+const NewTodoButton = styled.button `
+    font-size: 16px;
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    cursor: pointer;
+    margin-left: 8px;
+    width: 20%;
+    background-color: #22ee22;
+`
 
 class NewTodoForm extends React.Component {
     constructor(props) {
@@ -13,7 +42,7 @@ class NewTodoForm extends React.Component {
 
     createTask(taskName) {
         const {todos,onCreatePressed}=this.props    
-        let isDuplicated=todos.some(todo=> todo.taskName==taskName);
+        let isDuplicated=todos.data.some(todo=> todo.taskName==taskName);
         if(!isDuplicated) {
             onCreatePressed(taskName);
             this.setState({taskName:''})
@@ -24,19 +53,18 @@ class NewTodoForm extends React.Component {
         const {taskName}=this.state; 
            
         return (
-            <div className="new-todo-form">
-                <input
-                className="new-todo-input" 
+            <FormContainer>
+                <NewTodoInput                
                  type="text"
                  value={taskName}
                  onChange={e=> this.setState({taskName:e.target.value})}
                  placeholder="Type the task name"
                  />
     
-                 <button
-                 onClick={()=> this.createTask(taskName)} 
-                 className="new-todo-button">Create Task</button>
-            </div>
+                 <NewTodoButton
+                 onClick={()=> this.createTask(taskName)}>
+                 Create Task</NewTodoButton>
+            </FormContainer>
         )
     }
     
